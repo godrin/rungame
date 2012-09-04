@@ -2,12 +2,22 @@ package com.cdm;
 
 public class Entity {
 	private Position pos;
+	private ViewType viewType;
 
-	public Entity(Position p) {
+	public enum ViewType {
+		ENEMY, SHIP, FINISH
+	};
+
+	public Entity(Position p, ViewType pType) {
 		pos = p;
+		viewType = pType;
 	}
 
 	public Position getPosition() {
 		return pos;
+	}
+
+	public ViewType getViewType() {
+		return viewType;
 	}
 }

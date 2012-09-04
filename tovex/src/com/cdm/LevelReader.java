@@ -12,7 +12,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.cdm.LevelMap.FieldType;
 
 public class LevelReader {
-	public static LevelMap read(String campaignFile) {
+	public static Level read(String campaignFile) {
 
 		FileHandle h = Gdx.files.internal(campaignFile);
 
@@ -41,7 +41,7 @@ public class LevelReader {
 		}
 		Level level = new Level(w, lineBuffer.size());
 
-		int x, y = 0;
+		int x, y = lineBuffer.size()-1;
 		for (String cline : lineBuffer) {
 
 			for (x = 0; x < w; x++) {
@@ -54,9 +54,13 @@ public class LevelReader {
 
 				if (c == 'E')
 					level.add(new Enemy(new Position(x, y)));
+				if (c == 'S')
+					level.add(new Player(new Position(x, y)));
+				if (c == 'F')
+					level.add(new Finish(new Position(x, y)));
 			}
 
-			y++;
+			y--;
 		}
 		return level;
 	}

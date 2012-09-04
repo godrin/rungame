@@ -16,12 +16,12 @@ public class MyGdxGame implements ApplicationListener {
 	private SpriteBatch batch;
 	private Texture texture;
 	private Sprite sprite;
-	private LevelMap level;
+	private Level level;
 	private LevelView levelView;
 
 	@Override
 	public void create() {
-		
+
 		level = LevelReader.read("data/level.txt");
 		levelView = new LevelView(level);
 
@@ -59,7 +59,7 @@ public class MyGdxGame implements ApplicationListener {
 		sprite.draw(batch);
 		batch.end();
 
-		levelView.draw(levelCamera);
+		levelView.draw();
 	}
 
 	@Override

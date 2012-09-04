@@ -10,8 +10,12 @@ public class Level extends LevelMap {
 		super(pw, ph);
 	}
 
-	public void add(Enemy enemy) {
-		entities.add(enemy);
+	public void add(Entity player) {
+		entities.add(player);
+	}
+
+	public List<Entity> getEntities() {
+		return entities;
 	}
 
 }
