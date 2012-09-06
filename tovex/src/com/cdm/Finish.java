@@ -6,4 +6,8 @@ public class Finish extends Entity {
 		super(p, Entity.ViewType.FINISH);
 	}
 
+	@Override
+	public void move(float delta) {
+	}
+
 }

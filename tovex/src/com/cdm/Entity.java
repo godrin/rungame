@@ -1,6 +1,6 @@
 package com.cdm;
 
-public class Entity {
+public abstract class Entity {
 	private Position pos;
 	private ViewType viewType;
 
@@ -20,4 +20,7 @@ public class Entity {
 	public ViewType getViewType() {
 		return viewType;
 	}
+
+	public abstract void move(float delta);
+
 }

@@ -41,7 +41,7 @@ public class LevelReader {
 		}
 		Level level = new Level(w, lineBuffer.size());
 
-		int x, y = lineBuffer.size()-1;
+		int x, y = lineBuffer.size() - 1;
 		for (String cline : lineBuffer) {
 
 			for (x = 0; x < w; x++) {

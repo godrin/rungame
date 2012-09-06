@@ -23,17 +23,15 @@ public class LevelView {
 	public LevelView(Level l) {
 		float w = Gdx.graphics.getWidth();
 		float h = Gdx.graphics.getHeight();
-		
-		float sx=w/l.width();
-		float sy=h/l.height();
-		if(sx>sy)
-			sx=sy;
-		else
-			sy=sx;
 
-		camera = new OrthographicCamera(sx, h / w * sx);
-		camera.translate(l.width()/2,l.height()/2);
-		//camera.translate(10, 10);
+		float s = 0;
+		if (w > h)
+			s = l.width();
+		else
+			s = l.height();
+
+		camera = new OrthographicCamera(s, s*h/w); // h / w * sx);
+		camera.translate(l.width() / 2, l.height() / 2);
 		camera.update();
 		level = l;
 

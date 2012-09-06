@@ -6,4 +6,8 @@ public class Player extends Entity {
 		super(p, Entity.ViewType.SHIP);
 	}
 
+	@Override
+	public void move(float delta) {
+	}
+
 }

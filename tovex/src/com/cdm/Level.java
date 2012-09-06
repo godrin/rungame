@@ -18,4 +18,11 @@ public class Level extends LevelMap {
 		return entities;
 	}
 
+	public void move(float delta) {
+		for (Entity entity : entities) {
+			entity.move(delta);
+		}
+
+	}
+
 }
