@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector3;
 
 public class LevelView {
 	private Level level;
@@ -18,7 +19,10 @@ public class LevelView {
 	private TextureRegion enemyRegion;
 	private TextureRegion playerRegion;
 	private TextureRegion finishRegion;
+	private TextureRegion pointRegion;
 	private OrthographicCamera camera;
+	private Vector3 tmp = new Vector3();
+	private Position tmpPos = new Position();
 
 	public LevelView(Level l) {
 		float w = Gdx.graphics.getWidth();
@@ -30,7 +34,7 @@ public class LevelView {
 		else
 			s = l.height();
 
-		camera = new OrthographicCamera(s, s*h/w); // h / w * sx);
+		camera = new OrthographicCamera(s, s * h / w); // h / w * sx);
 		camera.translate(l.width() / 2, l.height() / 2);
 		camera.update();
 		level = l;
@@ -44,6 +48,7 @@ public class LevelView {
 		playerRegion = new TextureRegion(texture, 64, 0, 32, 32);
 		enemyRegion = new TextureRegion(texture, 96, 0, 32, 32);
 		finishRegion = new TextureRegion(texture, 0, 32, 32, 32);
+		pointRegion = new TextureRegion(texture, 32, 32, 32, 32);
 
 		sprite = new Sprite(freeRegion);
 		sprite.setSize(1.0f / 16, 1.0f / 16);
@@ -82,7 +87,17 @@ public class LevelView {
 				batch.draw(r, p.x, p.y, 1, 1);
 			}
 		}
+		for (Position p : level.getPoints()) {
+			batch.draw(pointRegion, p.x, p.y, 1, 1);
+		}
 
 		batch.end();
+	}
+
+	public Position unproject(int x, int y) {
+		tmp.set(x, y, 0);
+		camera.unproject(tmp);
+		tmpPos.set(tmp.x-0.5f, tmp.y-0.5f);
+		return tmpPos;
 	}
 }

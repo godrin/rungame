@@ -2,11 +2,17 @@ package com.cdm;
 
 public class LevelMap {
 	public enum FieldType {
-		EMPTY, WALL
+		EMPTY, WALL;
+
+		public boolean isPassable() {
+			return EMPTY.equals(this);
+		}
 	};
 
 	public static class Cell {
 		FieldType fieldType;
+		float distanceToPlayer;
+		public float distanceToSinglePlayer;
 	}
 
 	private Cell[] cells;
@@ -25,8 +31,14 @@ public class LevelMap {
 		cells[x + y * w].fieldType = t;
 	}
 
+	public Cell getCell(int x, int y) {
+		if (x >= 0 && y >= 0 && x < w && y < h)
+			return cells[x + y * w];
+		return null;
+	}
+
 	public FieldType get(int x, int y) {
-		return cells[x + y * w].fieldType;
+		return getCell(x, y).fieldType;
 	}
 
 	public int width() {
@@ -35,5 +47,9 @@ public class LevelMap {
 
 	public int height() {
 		return h;
+	}
+
+	public boolean posValid(Position p) {
+		return p.x >= 0 && p.x < w && p.y >= 0 && p.y < h;
 	}
 }

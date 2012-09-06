@@ -13,7 +13,7 @@ public class MyGdxGame implements ApplicationListener {
 	public void create() {
 		level = LevelReader.read("data/level.txt");
 		levelView = new LevelView(level);
-		controller = new GameController(level);
+		controller = new GameController(level, levelView);
 		Gdx.input.setInputProcessor(controller);
 	}
 
