@@ -70,4 +70,8 @@ public class Level extends LevelMap {
 	public void setPoints(List<Position> ps) {
 		points = ps;
 	}
+
+	public Cell get(Position p) {
+		return getCell((int)p.x, (int)p.y);
+	}
 }

@@ -48,9 +48,14 @@ public class Position {
 
 	}
 
-	public void alignToGrid() {
+	public Position alignToGrid() {
 		x = Math.round(x);
 		y = Math.round(y);
+		return this;
+	}
+
+	public float distanceTo(Position p) {
+		return (float) Math.sqrt(distance2To(p));
 	}
 
 }
