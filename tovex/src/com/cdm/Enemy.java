@@ -2,9 +2,8 @@ package com.cdm;
 
 public class Enemy extends Entity {
 
-	public Enemy(Position p) {
-		super(p, Entity.ViewType.ENEMY);
-
+	public Enemy(Position p, Level level) {
+		super(p, Entity.ViewType.ENEMY, level);
 	}
 
 	@Override

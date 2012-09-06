@@ -53,11 +53,11 @@ public class LevelReader {
 				level.set(x, y, t);
 
 				if (c == 'E')
-					level.add(new Enemy(new Position(x, y)));
+					level.add(new Enemy(new Position(x, y), level));
 				if (c == 'S')
-					level.add(new Player(new Position(x, y)));
+					level.add(new Player(new Position(x, y), level));
 				if (c == 'F')
-					level.add(new Finish(new Position(x, y)));
+					level.add(new Finish(new Position(x, y), level));
 			}
 
 			y--;

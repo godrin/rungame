@@ -2,8 +2,8 @@ package com.cdm;
 
 public class Player extends Entity {
 
-	public Player(Position p) {
-		super(p, Entity.ViewType.SHIP);
+	public Player(Position p, Level level) {
+		super(p, Entity.ViewType.SHIP, level);
 	}
 
 	@Override
