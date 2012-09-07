@@ -35,18 +35,19 @@ public class GameController extends Controller {
 	public boolean touchDragged(int x, int y, int pointer) {
 		Position p = levelView.unproject(x, y).alignToGrid();
 
-		Position last = drawnPositions.get(drawnPositions.size() - 1);
-		float distance = p.distance2To(last);
-		System.out.println("DIST " + distance + " " + p + " " + last);
-		if (distance > p.MIN_DISTANCE && distance < 1 + p.MIN_DISTANCE
-				&& level.posValid(p) && level.get(p).fieldType.isPassable()) {
+		if (drawnPositions.size() > 0) {
+			Position last = drawnPositions.get(drawnPositions.size() - 1);
+			float distance = p.distance2To(last);
+			System.out.println("DIST " + distance + " " + p + " " + last);
+			if (distance > p.MIN_DISTANCE && distance < 1 + p.MIN_DISTANCE
+					&& level.posValid(p) && level.get(p).fieldType.isPassable()) {
 
-			drawnPositions.add(new Position(p));
+				drawnPositions.add(new Position(p));
+			}
+			// List<Position> ps = level.getPathToPlayer(p);
+
+			level.setPoints(drawnPositions);
 		}
-		// List<Position> ps = level.getPathToPlayer(p);
-
-		level.setPoints(drawnPositions);
-
 		return false;
 	}
 

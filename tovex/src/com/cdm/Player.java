@@ -1,11 +1,12 @@
 package com.cdm;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player extends Entity {
 
-	private final static float SPEED = 0.2f;
-	private List<Position> job = null;
+	private final static float SPEED = 0.8f;
+	private List<Position> job = new ArrayList<Position>();
 
 	public Player(Position p, Level level) {
 		super(p, Entity.ViewType.SHIP, level);
@@ -27,10 +28,13 @@ public class Player extends Entity {
 					job.remove(0);
 				} else {
 					float dx = (first.x - p.x) / distance;
-					float dy = (first.x - p.x) / distance;
+					float dy = (first.y - p.y) / distance;
 
-					p.x += dx * delta * SPEED;
-					p.y += dy * delta * SPEED;
+					dx *= delta * SPEED;
+					dy *= delta * SPEED;
+
+					p.x += dx;
+					p.y += dy;
 					delta = 0;
 				}
 
@@ -40,7 +44,8 @@ public class Player extends Entity {
 	}
 
 	public void setJob(List<Position> points) {
-		job = points;
+		job.clear();
+		job.addAll(points);
 
 	}
 
